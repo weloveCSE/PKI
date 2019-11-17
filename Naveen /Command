@@ -1,0 +1,31 @@
+Connecting to Server VM: 
+18.223.235.172 ubuntu Varun@121250 20
+
+make chmod 777 in vm for /var/www/html
+upload php file using FileZilla in /var/www/html/index.php
+chrome: ip_Address/index.php
+
+/etc/apache2/mods-enabled# vi dir.conf to get index.php as first preference
+
+
+email==CSE
+
+
+TO add HTTPS to vm:
+
+openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -keyout /etc/ssl/private/my.key  -out /etc/ssl/certs/my.crt
+create /var/www/html/index.php
+give 755 permissions to html
+vim /etc/apache2/sites-available/mine-ssl.conf
+<VirtualHost *:443>
+    SSLEngine on
+    SSLCertificateFile /etc/ssl/certs/my.crt
+    SSLCertificateKeyFile /etc/ssl/private/my.key
+    servername 18.223.235.172
+    Documentroot /var/www/html
+</VirtualHost>
+
+a2ensite mine-ssl.conf
+a2dissite default-ssl.conf //Disable default
+a2enmod ssl//enable mod
+restart apache2
