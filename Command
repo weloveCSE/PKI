@@ -1,0 +1,8 @@
+Connecting to Server VM: 
+18.223.235.172 ubuntu Varun@121250 20
+
+make chmod 777 in vm for /var/www/html
+upload php file using FileZilla in /var/www/html/index.php
+chrome: ip_Address/index.php
+
+/etc/apache2/mods-enabled# vi dir.conf to get index.php as first preference
